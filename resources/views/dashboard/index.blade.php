@@ -7,10 +7,10 @@
 @section('content')
 
 {{-- Header + Multi-select Filters --}}
-<div class="rounded-xl border border-slate-200 bg-slate-900 p-4 shadow-sm">
+<div class="rounded-xl border border-slate-200 bg-slate-900 p-3 sm:p-4 shadow-sm">
     <div class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
-        <div class="flex items-center gap-3">
-            <div class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-white/10 text-blue-300">
+        <div class="flex items-center gap-3 min-w-0">
+            <div class="hidden sm:flex size-10 shrink-0 items-center justify-center rounded-lg bg-white/10 text-blue-300">
                 <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M10 18v-7"/>
                     <path d="M11.119 2.205a2 2 0 0 1 1.762 0l7.84 3.846A.5.5 0 0 1 20.5 7h-17a.5.5 0 0 1-.22-.949z"/>
@@ -20,8 +20,8 @@
                     <path d="M6 18v-7"/>
                 </svg>
             </div>
-            <div>
-                <h1 class="text-lg font-semibold text-white">Dashboard Utang DBH &amp; Realisasi Pembayaran</h1>
+            <div class="min-w-0">
+                <h1 class="text-base font-semibold text-white sm:text-lg">Dashboard Utang DBH &amp; Realisasi Pembayaran</h1>
                 <p class="text-xs text-slate-400">Provinsi Bengkulu · Dana Bagi Hasil ke Kabupaten/Kota · Realisasi per September 2026</p>
             </div>
         </div>
@@ -52,7 +52,7 @@
             ];
         @endphp
 
-        <div class="grid grid-cols-2 gap-2 sm:grid-cols-4">
+        <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
             @foreach($msFilters as $f)
                 <div class="relative" data-ms-root="{{ $f['id'] }}" data-ms-name="{{ $f['name'] }}">
                     <span class="mb-1 block text-[10px] font-medium uppercase tracking-wider text-slate-400">{{ $f['label'] }}</span>
@@ -73,7 +73,7 @@
 
                     {{-- Dropdown panel: white background, dark text (high contrast) --}}
                     <div data-ms-panel
-                         class="absolute z-30 mt-1 hidden w-full min-w-[12rem] max-h-64 overflow-auto rounded-lg border border-slate-200 bg-white p-1.5 shadow-lg">
+                         class="absolute z-30 mt-1 hidden w-full min-w-[12rem] sm:min-w-[14rem] max-h-64 overflow-auto rounded-lg border border-slate-200 bg-white p-1.5 shadow-lg max-w-[calc(100vw-2rem)]">
                         <button type="button" data-ms-select-all
                                 class="mb-1 flex w-full items-center justify-between rounded-md px-2.5 py-1.5 text-sm font-medium text-slate-700 transition hover:bg-slate-100">
                             Pilih Semua
@@ -112,25 +112,25 @@
 </div>
 
 {{-- KPI Cards --}}
-<div class="grid grid-cols-2 gap-3 lg:grid-cols-4">
-    <div class="relative overflow-hidden rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+<div class="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4">
+    <div class="relative overflow-hidden rounded-xl border border-slate-200 bg-white p-3 sm:p-4 shadow-sm">
         <span class="text-[10px] font-medium uppercase tracking-wider text-slate-500">Total Utang</span>
-        <p class="mt-1 text-2xl font-bold text-blue-600">Rp {{ number_format($totalUtang, 0, ',', '.') }}</p>
+        <p class="mt-1 text-base font-bold text-blue-600 sm:text-xl lg:text-2xl break-words">Rp {{ number_format($totalUtang, 0, ',', '.') }}</p>
         <div class="absolute bottom-0 left-0 h-1 w-full bg-blue-500"></div>
     </div>
-    <div class="relative overflow-hidden rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+    <div class="relative overflow-hidden rounded-xl border border-slate-200 bg-white p-3 sm:p-4 shadow-sm">
         <span class="text-[10px] font-medium uppercase tracking-wider text-slate-500">Total Pembayaran</span>
-        <p class="mt-1 text-2xl font-bold text-emerald-600">Rp {{ number_format($totalPembayaran, 0, ',', '.') }}</p>
+        <p class="mt-1 text-base font-bold text-emerald-600 sm:text-xl lg:text-2xl break-words">Rp {{ number_format($totalPembayaran, 0, ',', '.') }}</p>
         <div class="absolute bottom-0 left-0 h-1 w-full bg-emerald-500"></div>
     </div>
-    <div class="relative overflow-hidden rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+    <div class="relative overflow-hidden rounded-xl border border-slate-200 bg-white p-3 sm:p-4 shadow-sm">
         <span class="text-[10px] font-medium uppercase tracking-wider text-slate-500">Total Sisa Utang</span>
-        <p class="mt-1 text-2xl font-bold text-red-600">Rp {{ number_format($totalSisa, 0, ',', '.') }}</p>
+        <p class="mt-1 text-base font-bold text-red-600 sm:text-xl lg:text-2xl break-words">Rp {{ number_format($totalSisa, 0, ',', '.') }}</p>
         <div class="absolute bottom-0 left-0 h-1 w-full bg-red-500"></div>
     </div>
-    <div class="relative overflow-hidden rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+    <div class="relative overflow-hidden rounded-xl border border-slate-200 bg-white p-3 sm:p-4 shadow-sm">
         <span class="text-[10px] font-medium uppercase tracking-wider text-slate-500">Persentase Realisasi</span>
-        <p class="mt-1 text-2xl font-bold text-slate-900">{{ $persentase }}%</p>
+        <p class="mt-1 text-base font-bold text-slate-900 sm:text-xl lg:text-2xl">{{ $persentase }}%</p>
         <div class="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
             <div class="h-full rounded-full bg-emerald-500" style="width: {{ $persentase }}%"></div>
         </div>
@@ -144,7 +144,7 @@
     <div class="flex flex-col rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
         <h3 class="text-sm font-semibold text-slate-900">Peringkat Sisa Utang per Kabupaten/Kota</h3>
         <p class="text-[11px] text-slate-500">Diurutkan dari sisa utang tertinggi</p>
-        <div class="mt-3 flex-1" style="min-height: 260px;">
+        <div class="mt-3 flex-1 min-h-[220px] sm:min-h-[260px]">
             <canvas id="chartKab"></canvas>
         </div>
     </div>
@@ -153,7 +153,7 @@
     <div class="flex flex-col rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
         <h3 class="text-sm font-semibold text-slate-900">Realisasi vs Sisa Utang per Jenis Pajak</h3>
         <p class="text-[11px] text-slate-500">Perbandingan pembayaran dan sisa (stacked)</p>
-        <div class="mt-3 flex-1" style="min-height: 260px;">
+        <div class="mt-3 flex-1 min-h-[220px] sm:min-h-[260px]">
             <canvas id="chartPajak"></canvas>
         </div>
     </div>
@@ -162,7 +162,7 @@
     <div class="flex flex-col rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
         <h3 class="text-sm font-semibold text-slate-900">Tren Pembayaran Utang antar Triwulan</h3>
         <p class="text-[11px] text-slate-500">Kewajiban utang vs realisasi pembayaran</p>
-        <div class="mt-3 flex-1" style="min-height: 260px;">
+        <div class="mt-3 flex-1 min-h-[220px] sm:min-h-[260px]">
             <canvas id="chartTriwulan"></canvas>
         </div>
     </div>
@@ -171,11 +171,11 @@
     <div class="flex flex-col rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
         <h3 class="text-sm font-semibold text-slate-900">Proporsi Sisa Utang Berdasarkan Jenis Pajak</h3>
         <p class="text-[11px] text-slate-500">Distribusi kewajiban belum terbayar</p>
-        <div class="mt-3 flex flex-col gap-4 lg:flex-row">
-            <div class="flex-1" style="min-height: 200px;">
+        <div class="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div class="flex-1 min-h-[160px] sm:min-h-[200px]">
                 <canvas id="chartDoughnut"></canvas>
             </div>
-            <ul class="flex shrink-0 flex-col gap-1.5 lg:w-32">
+            <ul class="flex flex-wrap items-start gap-1.5 sm:shrink-0 sm:flex-col sm:gap-1.5 sm:w-32">
                 @php $colors = ['#2563EB', '#10B981', '#EF4444', '#F59E0B', '#8B5CF6', '#EC4899']; @endphp
                 @foreach($proporsi as $i => $p)
                     <li class="flex items-center gap-2 text-xs">
@@ -191,7 +191,7 @@
 
 {{-- Key Insights --}}
 <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-    <div class="flex items-start justify-between">
+    <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
         <div>
             <h3 class="text-sm font-semibold text-slate-900">Key Insights Eksekutif</h3>
             <p class="text-[11px] text-slate-500">Ringkasan otomatis dari filter aktif</p>
