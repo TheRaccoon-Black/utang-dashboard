@@ -85,7 +85,40 @@
                 </svg>
                 Jenis Pajak
             </a>
+
+            <p class="px-2 pb-1 pt-4 text-[10px] font-semibold uppercase tracking-wider text-slate-400">Akun</p>
+
+            <a href="{{ route('admin.users') }}"
+                class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors {{ request()->routeIs('admin.users') ? 'bg-slate-900 text-white' : 'text-slate-600 hover:bg-slate-100' }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                Manajemen User
+            </a>
         </nav>
+
+        {{-- Profil user --}}
+        <div class="border-t border-slate-200 p-3">
+            <div class="flex items-center gap-2.5 rounded-lg px-2 py-1.5">
+                <div class="flex size-8 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">
+                    {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                </div>
+                <div class="min-w-0 flex-1">
+                    <p class="truncate text-xs font-semibold text-slate-900">{{ auth()->user()->name }}</p>
+                    <p class="text-[10px] text-slate-500">{{ auth()->user()->roleLabel() }}</p>
+                </div>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" title="Keluar"
+                        class="flex size-7 items-center justify-center rounded-md text-slate-400 transition-colors hover:bg-red-50 hover:text-red-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
 
         <div class="border-t border-slate-200 p-3">
             <a href="{{ route('dashboard') }}"

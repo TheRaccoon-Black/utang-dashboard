@@ -11,6 +11,16 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        // Akun default (password: admin123 / operator123)
+        \App\Models\User::firstOrCreate(
+            ['email' => 'admin@utang.test'],
+            ['name' => 'Administrator', 'password' => 'admin123', 'role' => \App\Models\User::ROLE_ADMIN]
+        );
+        \App\Models\User::firstOrCreate(
+            ['email' => 'operator@utang.test'],
+            ['name' => 'Operator', 'password' => 'operator123', 'role' => \App\Models\User::ROLE_OPERATOR]
+        );
+
         $kabupatens = [
             'KOTA BENGKULU', 'REJANG LEBONG', 'BENGKULU SELATAN', 'BENGKULU UTARA',
             'LEBONG', 'KAUR', 'KEPAHIANG', 'MUKOMUKO', 'SELUMA', 'BENGKULU TENGAH',
